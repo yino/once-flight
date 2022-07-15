@@ -9,5 +9,5 @@
 
 #### 安装
 ```azure
-go get github.com/yino/once-flight
+go get github.com/yino/onceFlight
 ```

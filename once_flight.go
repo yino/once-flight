@@ -52,6 +52,7 @@ func (g *onceGroup) createCall(key string) (*call, bool) {
 func (g *onceGroup) makeCall(c *call, key string, fn func() (interface{}, error)) {
 	defer func() {
 		g.mutex.Lock()
+		// 释放内存空间
 		delete(g.calls, key)
 		g.mutex.Unlock()
 		c.wg.Done()
