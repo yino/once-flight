@@ -18,6 +18,10 @@ type (
 	}
 )
 
+func init() {
+
+}
+
 func (g *onceGroup) Do(key string, fn func() (interface{}, error)) (interface{}, error) {
 	c, ok := g.createCall(key)
 	if ok {
@@ -30,7 +34,6 @@ func (g *onceGroup) Do(key string, fn func() (interface{}, error)) (interface{},
 
 func (g *onceGroup) createCall(key string) (*call, bool) {
 	g.mutex.Lock()
-	// defer g.mutex.Unlock()
 	// 其他相同请求
 	if c, ok := g.calls[key]; ok {
 		g.mutex.Unlock()
